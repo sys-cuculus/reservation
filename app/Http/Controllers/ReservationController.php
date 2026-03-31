@@ -23,7 +23,7 @@ class ReservationController extends Controller
         // TODO validation
 
         Reservation:: create($request->all());
-        return redirect()->route('restaurant.index')
+        return redirect()->route('restaurants.index')
             ->with('success', 'Reservation created successfully');
     }
 
