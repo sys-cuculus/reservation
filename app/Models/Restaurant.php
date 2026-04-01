@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 #[Fillable(['restaurant_name', 'address', 'tel'])]
 class Restaurant extends Model
 {
+    public $timestamps = false;
+    
     /** @use HasFactory<RestaurantFactory> */
     use HasFactory;
 }
