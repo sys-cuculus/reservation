@@ -26,7 +26,7 @@
                             <td>{{ $restaurant->address }}</td>
                             <td>{{ $restaurant->tel }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary">Reserve</button>
+                                <a type="button" class="btn btn-primary" href="{{ route('reservations.create', ['restaurant' => $restaurant]) }}">Reserve</a>
                             </td>
                         </tr>
                     @endforeach
