@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use App\Models\Restaurant;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -15,7 +17,7 @@ class ReservationController extends Controller
     {
         $times = [];
 
-    for ($hour = 9; $hour <= 18; $hour++) {
+    for ($hour = 8; $hour <= 23; $hour++) {
         foreach (['00', '30'] as $minute) {
             $times[] = sprintf('%02d:%s', $hour, $minute);
         }
@@ -27,13 +29,18 @@ class ReservationController extends Controller
     /**
      * create reservation
      */
-    public function store(Request $request)
+    public function store(Restaurant $restaurant, ReservationRequest $request)
     {
-        // TODO validation
-
-        Reservation:: create($request->all());
+        // TODO 予約重複チェック
+        // バリデーションエラーメッセージの配置。component使わないでやるのもあり？
+        Reservation:: create([
+            'user_id' => Auth::user()->id,
+            'restaurant_id' => $restaurant->id,
+            'number_of_people' => $request->number_of_people,
+            'reservation_time' => $request->reservation_date_time,
+        ]);
         return redirect()->route('restaurants.index')
-            ->with('success', 'Reservation created successfully');
+            ->with('success', 'Reserved successfully');
     }
 
 }

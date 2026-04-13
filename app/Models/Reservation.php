@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[Fillable(['user_id', 'restaurant_id'])]
+#[Fillable(['user_id', 'restaurant_id', 'number_of_people', 'reservation_time'])]
 class Reservation extends Model
 {
     /** @use HasFactory<ReservationFactory> */
