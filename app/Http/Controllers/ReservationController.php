@@ -17,11 +17,11 @@ class ReservationController extends Controller
     {
         $times = [];
 
-    for ($hour = 8; $hour <= 23; $hour++) {
-        foreach (['00', '30'] as $minute) {
-            $times[] = sprintf('%02d:%s', $hour, $minute);
+        for ($hour = 8; $hour <= 23; $hour++) {
+            foreach (['00', '30'] as $minute) {
+                $times[] = sprintf('%02d:%s', $hour, $minute);
+            }
         }
-    }
 
         return view('reservations.create', compact('restaurant', 'times'));
     }
@@ -31,8 +31,6 @@ class ReservationController extends Controller
      */
     public function store(Restaurant $restaurant, ReservationRequest $request)
     {
-        // TODO 予約重複チェック
-        // バリデーションエラーメッセージの配置。component使わないでやるのもあり？
         Reservation:: create([
             'user_id' => Auth::user()->id,
             'restaurant_id' => $restaurant->id,
