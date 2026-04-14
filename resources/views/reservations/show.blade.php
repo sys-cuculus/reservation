@@ -29,8 +29,11 @@
             </p>
         </div>
         <div>
-            <a href="{{ route('reservations.edit', $reservation) }}" type="button" class="btn btn-primary me-2">Manage</a>
-            <a href="#" type="button" class="btn btn-danger">Cancel</a>
+            <form action="{{ route('reservations.delete', $reservation) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                <a href="{{ route('reservations.edit', $reservation) }}" type="button" class="btn btn-primary me-2">Manage</a>
+                @method('DELETE')
+                <x-primary-button class="btn btn-danger">Cancel</x-primary-button>
+            </form>
         </div>
     </div>
 </x-layout>

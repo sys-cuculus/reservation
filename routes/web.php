@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.show');
     Route::get('/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
     Route::put('/reservations/{reservation}/update', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::delete('/reservations/{reservation}/delete', [ReservationController::class, 'destroy'])->name('reservations.delete');
 });
 
 Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');

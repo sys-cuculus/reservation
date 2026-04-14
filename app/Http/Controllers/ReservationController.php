@@ -92,4 +92,15 @@ class ReservationController extends Controller
         return redirect()->route('dashboard')->with('success', 'Reservation modified successfully');
     }
 
+
+    /**
+     * cancel reservation
+     */
+    public function destroy(Reservation $reservation)
+    {
+        $reservation->delete();
+        return redirect()->route('dashboard')->with('success', 'Reservation canceled successfully');
+
+    }
+
 }
