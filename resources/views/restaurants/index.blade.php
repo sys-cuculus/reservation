@@ -12,17 +12,18 @@
                 @endguest
             </p>
         </div>
+        @session('success')
+            <div class="text-center text-info">
+                <h4>{{ $value }}</h4>
+            </div>
+        @endsession
         @if ($restaurants->isEmpty())
             <div>
                 <p>No restaurants found</p>
             </div>
         @else
             <div>
-                @session('success')
-                <div class="text-center text-info">
-                    <h4>{{ $value }}</h4>
-                </div>
-                @endsession
+                
                 <table class="table table-striped table-bordered text-center">
                     <thead>
                         <tr>

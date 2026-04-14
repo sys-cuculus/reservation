@@ -61,4 +61,35 @@ class ReservationController extends Controller
             ->with('success', 'Reserved successfully');
     }
 
+
+    /**
+     * manage reservation
+     */
+    public function edit(Reservation $reservation)
+    {
+        // create time select options
+        $times = [];
+        for ($hour = 8; $hour <= 23; $hour++) {
+            foreach (['00', '30'] as $minute) {
+                $times[] = sprintf('%02d:%s', $hour, $minute);
+            }
+        }
+
+        return view('reservations.edit', compact('reservation', 'times'));
+    }
+
+
+    /**
+     * update reservation
+     */
+    public function update(ReservationRequest $request, Reservation $reservation)
+    {
+        $reservation->update([
+            'number_of_people' => $request->number_of_people,
+            'reservation_time' => $request->reservation_date_time,
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Reservation modified successfully');
+    }
+
 }

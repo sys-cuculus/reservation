@@ -16,6 +16,10 @@
                 {{ $reservation->number_of_people }}
             </p>
             <p>
+                <b>Reservation Time</b>
+                {{ $reservation->reservation_time}}
+            </p>
+            <p>
                 <b>Address:</b>
                 {{ $reservation->restaurant->address }}
             </p>
@@ -25,7 +29,7 @@
             </p>
         </div>
         <div>
-            <a href="#" type="button" class="btn btn-primary me-2">Manage</a>
+            <a href="{{ route('reservations.edit', $reservation) }}" type="button" class="btn btn-primary me-2">Manage</a>
             <a href="#" type="button" class="btn btn-danger">Cancel</a>
         </div>
     </div>

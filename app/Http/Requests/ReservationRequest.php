@@ -24,6 +24,7 @@ class ReservationRequest extends FormRequest
      */
     public function rules(): array
     {
+        $restaurantId = $this->reservation ? $this->reservation->restaurant->id : $this->restaurant->id;
         return [
             'number_of_people' => ['required', 'numeric', 'min:1'],
             'reservation_date' => ['required', 'date',],
@@ -41,7 +42,8 @@ class ReservationRequest extends FormRequest
                 'date',
                 'after:now',
                 Rule::unique('reservations', 'reservation_time')
-                ->where('restaurant_id', $this->restaurant->id)
+                ->where('restaurant_id', $restaurantId)
+                ->ignore($this->reservation)
             ],
         ];
     }

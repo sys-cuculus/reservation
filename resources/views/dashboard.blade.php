@@ -12,6 +12,11 @@
                 <a href="{{ route('restaurants.index')}} " type="button" class="btn btn-secondary">Restaurants</a>
             </p>
         </div>
+        @session('success')
+            <div class="text-center text-info">
+                <h4 class="text-xl font-bold">{{ $value }}</h4>
+            </div>
+        @endsession
         @if ($reservations->isEmpty())
             <div>
                 <div>
