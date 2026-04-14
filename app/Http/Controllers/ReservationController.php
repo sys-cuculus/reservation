@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use App\Models\Restaurant;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ReservationController extends Controller
 {
     /**
      * show reservation list (Dashboard)
      */
-    public function index()
+    public function index():View
     {
         $reservations = Reservation::whereBelongsTo(Auth::user())->get();
         return view('dashboard', compact('reservations'));
@@ -21,9 +21,18 @@ class ReservationController extends Controller
 
 
     /**
+     * show reservation detail
+     */
+    public function show(Reservation $reservation): View
+    {
+        return view('reservations.show', compact('reservation'));
+    }
+
+
+    /**
      * show reservation form
      */
-    public function create(Restaurant $restaurant)
+    public function create(Restaurant $restaurant):View
     {
         // create time select options
         $times = [];

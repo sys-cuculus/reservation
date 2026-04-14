@@ -3,7 +3,7 @@
     <div class="container">
         <div class="mb-4 text-center">
             <h1>Restaurants</h1>
-            <p class="text-right">
+            <p class="text-end">
                 @auth
                     <a href="{{ route('dashboard')}}" type="button" class="btn btn-secondary">Dashboard</a>
                 @endauth
