@@ -11,12 +11,22 @@ use Illuminate\Support\Facades\Auth;
 class ReservationController extends Controller
 {
     /**
+     * show reservation list (Dashboard)
+     */
+    public function index()
+    {
+        $reservations = Reservation::whereBelongsTo(Auth::user())->get();
+        return view('dashboard', compact('reservations'));
+    }
+
+
+    /**
      * show reservation form
      */
     public function create(Restaurant $restaurant)
     {
+        // create time select options
         $times = [];
-
         for ($hour = 8; $hour <= 23; $hour++) {
             foreach (['00', '30'] as $minute) {
                 $times[] = sprintf('%02d:%s', $hour, $minute);
@@ -25,6 +35,7 @@ class ReservationController extends Controller
 
         return view('reservations.create', compact('restaurant', 'times'));
     }
+
 
     /**
      * create reservation

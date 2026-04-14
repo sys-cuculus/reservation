@@ -27,7 +27,16 @@ class ReservationRequest extends FormRequest
         return [
             'number_of_people' => ['required', 'numeric', 'min:1'],
             'reservation_date' => ['required', 'date',],
-            'reservation_time' => ['required', 'string'],
+            'reservation_time' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    $minutes = date('i', strtotime($value));
+                    if (!in_array($minutes, ['00', '30'])) {
+                        $fail('reservation time must be in 30-minute intervals.');
+                    }
+                }
+            ],
             'reservation_date_time' => [
                 'date',
                 'after:now',

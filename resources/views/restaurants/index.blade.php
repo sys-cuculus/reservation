@@ -23,7 +23,7 @@
                     <h4>{{ $value }}</h4>
                 </div>
                 @endsession
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered text-center">
                     <thead>
                         <tr>
                             <th scope="col">Restaurant Name</th>
