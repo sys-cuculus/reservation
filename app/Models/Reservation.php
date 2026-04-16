@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Policies\ReservationPolicy;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PhpParser\Node\Scalar\String_;
 
+#[UsePolicy(ReservationPolicy::class)]
 #[Fillable(['user_id', 'restaurant_id', 'number_of_people', 'reservation_time'])]
 class Reservation extends Model
 {
