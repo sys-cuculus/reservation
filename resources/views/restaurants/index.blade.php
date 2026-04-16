@@ -22,7 +22,7 @@
                 <p>No restaurants found</p>
             </div>
         @else
-            <div>
+            <div class="text-center">
                 
                 <table class="table table-striped table-bordered text-center">
                     <thead>
@@ -46,6 +46,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div>
+                    {{ $restaurants->links() }}
+                </div>
 
             </div>
             

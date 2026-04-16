@@ -13,9 +13,7 @@ class RestaurantController extends Controller
      */
     public function index(): View
     {
-        // TODO pagenation
-
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::query()->paginate(config('constants.restaurants.par_page'));
         return view('restaurants.index', compact('restaurants'));
     }
 
