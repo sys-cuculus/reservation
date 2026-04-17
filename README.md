@@ -1,58 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Application de gestion de réservations
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Description
 
-## About Laravel
+Ce projet est une application simple de gestion de réservations développée avec Laravel.
+Elle permet aux utilisateurs authentifiés de créer, consulter, modifier et supprimer leurs réservations.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Fonctionnalités
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Authentification des utilisateurs
+* Création, modification et suppression de réservations
+* Gestion des créneaux horaires par intervalles de 30 minutes
+* Validation des données et prévention des doublons
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Technologies utilisées
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* PHP / Laravel
+* Blade
+* MySQL
+* Docker (Laravel Sail)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## ⚙️ Installation
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 🐳 Avec Docker (Laravel Sail)
+
+1. Cloner le dépôt :
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/sys-cuculus/reservation.git
+cd reservation
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Installer les dépendances (via Docker) :
 
-## Contributing
+```bash
+docker run --rm \
+    -v $(pwd):/app \
+    composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Configurer l'environnement :
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Démarrer les conteneurs :
 
-## Security Vulnerabilities
+```bash
+./vendor/bin/sail up -d
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Générer la clé de l'application et exécuter les migrations :
 
-## License
+```bash
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### 💻 Sans Docker
+
+1. Cloner le dépôt :
+
+```bash
+git clone https://github.com/sys-cuculus/reservation.git
+cd reservation
+```
+
+2. Installer les dépendances :
+
+```bash
+composer install
+```
+
+3. Configurer l'environnement :
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+4. Configurer la base de données dans le fichier `.env`
+
+5. Exécuter les migrations :
+
+```bash
+php artisan migrate
+```
+
+6. Lancer le serveur local :
+
+```bash
+php artisan serve
+```
+
+---
+
+
+## 🌱 Données de test (Seeder)
+
+Des données de démonstration peuvent être générées pour faciliter les tests de l'application.
+
+### 1. Exécuter les seeders
+
+Avec Docker (Laravel Sail) :
+
+```bash
+./vendor/bin/sail artisan db:seed
+```
+
+Sans Docker :
+
+```bash
+php artisan db:seed
+```
+
+---
+
+### 2. Exemple de données générées
+
+Le seeder crée :
+
+* Des restaurants
+* Des créneaux de réservation associés
+
+Ces données permettent de tester rapidement les fonctionnalités sans configuration manuelle.
+
+---
+
+### 3. Option : migration + seed en une commande
+
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+ou
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+⚠️ Cette commande supprime toutes les données existantes.
+
+---
+
+## ⚠️ Remarques
+
+* Le dossier `vendor` n’est pas inclus dans le dépôt.
+* Veuillez exécuter `composer install` avant de démarrer l’application.
+
+---
+
+## 🎯 Objectif du projet
+
+Ce projet a pour but de démontrer :
+
+* Le développement backend avec Laravel
+* La gestion de l’authentification
+* La validation des données et la logique métier
+* Une structure de code claire et maintenable
+
+---
+
+## 👤 Auteur
+
+https://github.com/sys-cuculus
