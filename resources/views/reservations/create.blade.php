@@ -8,7 +8,7 @@
                 <h4>Restaurant: {{ $restaurant->restaurant_name }}</h4>
             </div>
             <form action="{{route('reservations.store', $restaurant)}}" method="POST">
-            
+                @csrf
                 <div>
                     <x-input-label for="number_of_people" value="Number of people" />
                     <x-text-input type="number" name="number_of_people" value="{{ old('number_of_people') }}" min="1"/>

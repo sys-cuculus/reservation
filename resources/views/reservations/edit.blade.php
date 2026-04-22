@@ -8,6 +8,7 @@
                 <h4>Restaurant: {{ $reservation->restaurant->restaurant_name }}</h4>
             </div>
             <form action="{{route('reservations.update', $reservation)}}" method="POST">
+                @csrf
                 @method('put')
             
                 <div>
